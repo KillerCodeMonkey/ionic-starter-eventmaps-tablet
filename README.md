@@ -6,7 +6,7 @@ This is an addon starter template based on my [ionic-starter-requirejs template]
 
 ## How to use this template
 
-To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project.
+To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project. It is not that default approach to use the Ionic Framework ;).
 
 Or use the files from ionic market:
 [Go](http://market.ionic.io/starters/event-app-and-maps-tablet)

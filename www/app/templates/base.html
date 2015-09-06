@@ -1,21 +1,21 @@
 <ion-view>
     <ion-header-bar class="bar-energized">
-      <div class="buttons">
+      <div class="buttons" ng-switch="dashboard">
         <!-- Toggle left side menu -->
-        <button menu-toggle="left" ng-if="dashboard === 1" class="button button-icon icon ion-navicon"></button>
+        <div menu-toggle="left" ng-switch-when="1" class="button button-icon icon ion-navicon"></div>
         <!-- Back -->
-        <button ng-if="dashboard === 2" ng-click="back()" class="button button-icon icon ion-android-arrow-back"></button>
+        <div ng-switch-when="2" ng-click="back()" class="button button-icon icon ion-android-arrow-back"></div>
       </div>
       <h1 class="title">EventFinder</h1>
     </ion-header-bar>
     <ion-content has-bouncing="false" element-size scroll="false">
       <div class="row" ng-if="elementSize">
-        <div class="col col-25">
+        <div class="col col-33">
          <ion-scroll ng-style="{'height': (elementSize.height - 20) + 'px'}">
             <ui-view></ui-view>
           </ion-scroll>
         </div>
-        <div class="col col-75">
+        <div class="col col-67">
           <div id="map" data-tap-disabled="true" google-map ng-style="{'height': (elementSize.height - 20) + 'px', 'width': '100%'}" events="events"></div>
         </div>
       </div>
