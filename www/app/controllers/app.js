@@ -11,15 +11,26 @@ define([
     '$ionicModal',
     '$window',
     '$ionicScrollDelegate',
+    '$ionicPlatform',
     '$sce',
     'pageService',
-    function ($scope, $ionicModal, $window, $ionicScrollDelegate, $sce, pageService) {
+    function ($scope, $ionicModal, $window, $ionicScrollDelegate, $ionicPlatform, $sce, pageService) {
       $scope.ready = true;
       $scope.dashboard = 1;
+
+      var currentState;
 
       $scope.back = function () {
         $window.history.back();
       };
+
+      $ionicPlatform.registerBackButtonAction(function () {
+          if (currentState && currentState.name !== 'app.dashboard') {
+            $scope.back();
+          } else {
+            $window.navigator.app.exitApp();
+          }
+      }, 100);
 
       $scope.$on('$stateChangeStart', function () {
         $scope.dashboard = 0;
@@ -31,6 +42,7 @@ define([
         } else {
           $scope.dashboard = 2;
         }
+        currentState = toState;
         $ionicScrollDelegate.resize();
         $ionicScrollDelegate.scrollTop();
       });
