@@ -8,7 +8,7 @@ define([
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
-        element.ready(function () {
+        function resize() {
           var height,
               width;
           $timeout(function () {
@@ -26,6 +26,24 @@ define([
               height: height,
               width: width
             };
+          });
+        }
+
+        element.ready(function () {
+          resize();
+          scope.$on(function () {
+            return element[0].offsetHeight;
+          }, function (newHeight, oldHeight) {
+            if (newHeight !== oldHeight) {
+              resize();
+            }
+          });
+          scope.$on(function () {
+            return element[0].offsetWidth;
+          }, function (newWidth, oldWidth) {
+            if (newWidth !== oldWidth) {
+              resize();
+            }
           });
         });
       }
