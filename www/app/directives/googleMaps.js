@@ -58,8 +58,8 @@ define([
           }
 
           scope.$on('updateMap', function (event, events) {
-            removeMarkers();
-            makeMarkers(events);
+              removeMarkers();
+              makeMarkers(events);
           });
         }
       };
