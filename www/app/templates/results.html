@@ -1,0 +1,20 @@
+<ion-refresher on-refresh="reload()">
+</ion-refresher>
+<div ng-show="show.list">
+  <ion-list>
+    <ion-item ui-sref="app.detail({id: event.id})" class="item-royal item-avatar item-icon-right" ng-repeat="event in events | limitTo:limit">
+      <img ng-src="{{event.thumb}}">
+      <h2>{{event.name}}</h2>
+      <p>
+        <b>{{event.city}}</b> / District {{event.district}}<br>
+        {{event.street}} {{event.number}}, {{event.zip}} {{event.city}}
+      </p>
+      <i class="icon ion-ios-arrow-right"></i>
+    </ion-item>
+    <ion-item class="text-center item-royal" ng-if="events && !events.length">No events found :(</ion-item>
+  </ion-list>
+</div>
+<ion-infinite-scroll
+  ng-if="!events || events.length > limit"
+  on-infinite="loadMore()">
+</ion-infinite-scroll>

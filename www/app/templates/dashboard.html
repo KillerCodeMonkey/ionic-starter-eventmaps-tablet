@@ -1,0 +1,44 @@
+<form name="form.search" ng-submit="form.search.$valid && goToList()">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" ng-model="search.string" required="required" placeholder="City, district or event name">
+  </label>
+  <br />
+  <div>
+    <label class="checkbox" style="display:flex; align-items: center">
+      <input type="checkbox" ng-model="search.satTrans" style="margin-right: 20px;">
+      Satellite transmission
+    </label>
+  </div>
+  <div>
+    <label class="checkbox" style="display:flex; align-items: center">
+      <input type="checkbox" ng-model="search.wheelChair" style="margin-right: 20px;">
+      wheelchair accessibility
+    </label>
+  </div>
+  <div>
+    <label class="checkbox" style="display:flex; align-items: center">
+      <input type="checkbox" ng-model="search.wheelChairLift" style="margin-right: 20px;">
+      wheelchair accessible lavatory
+    </label>
+  </div>
+  <button class="button button-balanced button-block" ng-disabled="form.search.$invalid"><b>Search</b></button>
+</form>
+<br>
+<br>
+<h3>Next events</h3>
+<div class="text-center" ng-if="loading">
+  <ion-spinner></ion-spinner>
+</div>
+<ion-list>
+  <ion-item class="item-icon-right item-avatar item-royal" ui-sref="app.detail({id: event.id})" ng-repeat="event in events track by event.id | limitTo:limit">
+    <img ng-src="{{event.thumb}}">
+    <h2 class="positive">{{event.name}}</h2>
+    <p>
+      <b>{{event.city}}</b> / District {{event.district}}<br>
+      {{event.street}} {{event.number}}, {{event.zip}} {{event.city}}
+    </p>
+    <i class="icon ion-ios-arrow-right"></i>
+  </ion-item>
+  <ion-item class="text-center item-royal" ng-if="events && !events.length">No events found :(</ion-item>
+</ion-list>

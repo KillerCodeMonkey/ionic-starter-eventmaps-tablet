@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <!-- load requirejs config -->
+    <script src="main.js"></script>
+    <!-- load requirejs -->
+    <script src="lib/requirejs/require.min.js"></script>
+    <!-- load boot-script - it loads configs, routes, runs and bootstraps the app -->
+    <script src="app/boot.js"></script>
+
+    <!-- google maps javascript -->
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true"></script>
+  </head>
+  <body ng-controller="AppCtrl" ng-show="ready" class="ng-hide">
+    <ion-side-menus>
+      <!-- Left menu -->
+      <ion-side-menu side="left">
+        <ion-header-bar class="bar-energized">
+          <h1 class="title">More?</h1>
+        </ion-header-bar>
+        <ion-content class="background-royal">
+          <ion-list>
+            <ion-item class="item-royal item-icon-right" ng-click="openModal($index)" ng-repeat="page in pages">
+              {{page.title}}
+              <i class="icon" ng-class="page.icon"></i>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+
+      <ion-side-menu-content>
+        <!-- where the initial view template will be rendered -->
+        <ion-nav-view>
+        </ion-nav-view>
+      </ion-side-menu-content>
+
+    </ion-side-menus>
+  </body>
+</html>
